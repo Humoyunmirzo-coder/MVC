@@ -18,5 +18,7 @@ html {
 }
 
 body {
-  margin-bottom: 60px;
+    margin-bottom: 60px;
+    background-image: url('c:\hp\wpf\mvc_1\model-view-controller\model-view-controller\image\mvc.jpg');
+   
 }

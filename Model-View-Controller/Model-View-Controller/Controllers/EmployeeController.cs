@@ -59,11 +59,12 @@ namespace Model_View_Controller.Controllers
 						FirstName = employeeViewModel.FirstName,
 						LastName = employeeViewModel.LastName,
 						Email = employeeViewModel.Email,
-						DataOfBirth  = employeeViewModel.DataOfBirth,
+						DataOfBirth  = employeeViewModel.DataOfBirth = DateTime.UtcNow,
 						Salary = employeeViewModel.Salary,
 
 					};
 					_dbcontext.Employee.Add(employee);
+					
 					_dbcontext.SaveChanges();
 					TempData["successMessage"] = "Employee created successfully !";
 					return RedirectToAction("Index");
@@ -209,6 +210,7 @@ namespace Model_View_Controller.Controllers
 				return View();
 			}
 		}
-	}
+     
+    }
 
 }

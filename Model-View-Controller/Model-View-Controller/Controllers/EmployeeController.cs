@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.VisualBasic;
 using Model_View_Controller.Data;
 using Model_View_Controller.Models;
 using Model_View_Controller.Models.DbEntity;
@@ -58,7 +59,7 @@ namespace Model_View_Controller.Controllers
 						FirstName = employeeViewModel.FirstName,
 						LastName = employeeViewModel.LastName,
 						Email = employeeViewModel.Email,
-						DataOfBirth = employeeViewModel.DataOfBirth,
+						DataOfBirth  = employeeViewModel.DataOfBirth,
 						Salary = employeeViewModel.Salary,
 
 					};
@@ -128,7 +129,7 @@ namespace Model_View_Controller.Controllers
 						FirstName = model.FirstName,
 						LastName = model.LastName,
 						Email = model.Email,
-						DataOfBirth = model.DataOfBirth,
+						DataOfBirth = model.DataOfBirth= DateTime.UtcNow,
 						Salary = model.Salary,
 
 					};
@@ -192,7 +193,6 @@ namespace Model_View_Controller.Controllers
 				if (employee != null)
 				{
 					_dbcontext.Employee.Remove(employee);
-					//_dbcontext.Remove(employee);
 					_dbcontext.SaveChanges();
 					TempData["errorMessage"] = "Employee Deleted Successfully";
 					return RedirectToAction("index");

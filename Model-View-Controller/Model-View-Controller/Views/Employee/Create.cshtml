@@ -7,12 +7,18 @@
 <hr />
  @if (!string.IsNullOrWhiteSpace(errorMessage))
 {
-<div class="alert alert-success ">
+<div class="alert alert-success">
 	<strong>Error!</strong>@errorMessage
-	<button type="button" class="btn-close float-end " data-bs-dismiss="alter"></button>
+		<button type="button" class="btn-close float-end " data-bs-dismiss="alter" aria-label="Close"></button>
 </div>
 }
 <form action="Create" method="post">
+
+	<div class="mb-3">
+		<label class="form-label">Id</label>
+		<input type="text" class="form-control" asp-for="Id" />
+		<span asp-validation-for="Id" class="text-danger"></span>
+	</div>
 	<div class="mb-3">
 		<label class="form-label">Firrst Name</label>
 		<input type="text" class="form-control" asp-for="FirstName" />

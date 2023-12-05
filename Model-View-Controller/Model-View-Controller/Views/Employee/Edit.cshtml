@@ -1,10 +1,18 @@
 ﻿@model Model_View_Controller.Models.EmployeeViewModel
 @{
-	ViewData["Title"] = "Edit Eployee";
+	ViewData["Title"] = "Edit Employee";
+	var errorMessage = TempData["errorMessage"]?.ToString();
 }
-<h3> @ViewData["Titel"]</h3>
+<h3> @ViewData["Title"]</h3>
 <hr />
-<form action="Edit" method="post" > 
+@if (!string.IsNullOrWhiteSpace(errorMessage))
+{
+	<div class="alert alert-success">
+		<strong>Error!</strong>@errorMessage
+		<button type="button" class="btn-close float-end " data-bs-dismiss="alter" aria-label="Close"></button>
+	</div>
+}
+<form action="Edit" method="post" autocomplete="off">
 	<div class="mb-3">
 		<label class="form-lebel"> Id</label>
 		<input type="text" class="form-control" asp-for ="Id" readonly />

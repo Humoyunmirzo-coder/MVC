@@ -149,6 +149,66 @@ namespace Model_View_Controller.Controllers
 				return View();
 			}
 		}
+		[HttpGet]
+		public IActionResult Delete(int Id)
+		{
+			var employee = _dbcontext.Employee.SingleOrDefault(x => x.Id == Id);
+			try
+			{
+				if (employee != null)
+				{
+					var employeeView = new EmployeeViewModel()
+					{
+						Id = employee.Id,
+						FirstName = employee.FirstName,
+						LastName = employee.LastName,
+						Email = employee.Email,
+						DataOfBirth = employee.DataOfBirth,
+						Salary = employee.Salary,
+					};
+					return View(employeeView);
+
+				}
+				else
+				{
+					TempData["errorMessage"] = $"Employee detals not {Id}";
+					return RedirectToAction("index");
+				}
+
+			}
+			catch (Exception ex)
+			{
+				TempData["errorMessage"] = ex.Message;
+				return RedirectToAction("index");
+			}
+
+		}
+		[HttpPost]
+		public IActionResult Delete (EmployeeViewModel model)
+		{
+			try
+			{
+				var employee = _dbcontext.Employee.SingleOrDefault(x => x.Id == model.Id);
+				if (employee != null)
+				{
+					_dbcontext.Employee.Remove(employee);
+					//_dbcontext.Remove(employee);
+					_dbcontext.SaveChanges();
+					TempData["errorMessage"] = "Employee Deleted Successfully";
+					return RedirectToAction("index");
+				}
+				else
+				{
+					TempData["errorMessage"] = $"Employee detals not  {model.Id}";
+					return RedirectToAction("index");
+				}
+			}
+			catch (Exception ex)
+			{
+				TempData["errorMessage"] = ex.Message;
+				return View();
+			}
+		}
 	}
 
 }

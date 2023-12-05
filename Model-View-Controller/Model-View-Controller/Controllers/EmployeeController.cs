@@ -2,6 +2,7 @@
 using Model_View_Controller.Data;
 using Model_View_Controller.Models;
 using Model_View_Controller.Models.DbEntity;
+using System.Web.WebPages;
 
 namespace Model_View_Controller.Controllers
 {
@@ -80,5 +81,74 @@ namespace Model_View_Controller.Controllers
 				return View();
 			}
 		}
+		[HttpGet]
+		public IActionResult Edit ( int Id)
+		{
+			var employee = _dbcontext.Employee.SingleOrDefault(x => x.Id == Id);
+			try
+			{
+				if (employee != null)
+				{
+					var employeeView = new EmployeeViewModel()
+					{
+						Id = employee.Id,
+						FirstName = employee.FirstName,
+						LastName = employee.LastName,
+						Email = employee.Email,
+						DataOfBirth = employee.DataOfBirth,
+						Salary = employee.Salary,
+					};
+					return View(employeeView);
+
+				}
+				else
+				{
+					TempData["errorMessage"] = $"Employee detals not {Id}";
+					return RedirectToAction("index");
+				}
+
+			}
+			catch (Exception ex)
+			{
+				TempData["errorMessage"] = ex.Message;
+				return RedirectToAction("index");
+			}
+
+		}
+		[HttpPost] 
+		public IActionResult Edit(EmployeeViewModel model)
+		{
+			try
+			{
+				if (ModelState.IsValid)
+				{
+					var employee = new Employee()
+					{
+						Id = model.Id,
+						FirstName = model.FirstName,
+						LastName = model.LastName,
+						Email = model.Email,
+						DataOfBirth = model.DataOfBirth,
+						Salary = model.Salary,
+
+					};
+					_dbcontext.Employee.Update(employee);
+					_dbcontext.SaveChanges();
+					TempData["successMessage"] = "Employee update successfully !";
+					return RedirectToAction("Index");
+				}
+				else
+				{
+					TempData["errorMessage"] = "Model Data is invalid ";
+					return View();
+				}
+			}
+			catch (Exception ex)
+			{
+				TempData["errorMessage"] = ex.Message;
+				return View();
+			}
+		}
 	}
+
 }

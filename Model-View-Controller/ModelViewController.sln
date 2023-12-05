@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.7.34024.191
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Model-View-Controller", "Model-View-Controller\Model-View-Controller.csproj", "{C4207257-9BFE-4C1F-BA1F-CCAA9E6A6B81}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ModelViewController", "Model-View-Controller\ModelViewController.csproj", "{C4207257-9BFE-4C1F-BA1F-CCAA9E6A6B81}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

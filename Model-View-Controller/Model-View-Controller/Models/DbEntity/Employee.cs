@@ -1,29 +1,20 @@
 ﻿using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Model_View_Controller.Models.DbEntity
 {
 	public class Employee
 	{
 		[Key]
+		[DatabaseGenerated(DatabaseGeneratedOption.Identity)]
 		public int Id { get; set; }
-
-		[DisplayName("First Name")]
+		[Column (TypeName = "varchar(50)")]
 		public string FirstName { get; set; }
-
-		[DisplayName("Last Name")]
 		public int LastName { get; set; }
-
-		[DisplayName("E-mail")]
 		public string Email { get; set; }
-		public string Salary { get; set; }
-
-		[DisplayName("Data Of Birth")]
-		public string DataOfBirth { get; set; }
-
-		[DisplayName("Name")]
-		public string FullName
-		{ get { return FirstName + " " + LastName; } }
-
+		public double  Salary { get; set; }
+		public DateTime DataOfBirth { get; set; }
+	
 	}
 }

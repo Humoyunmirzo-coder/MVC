@@ -16,10 +16,10 @@ namespace Model_View_Controller.Models
 
 		[DisplayName("E-mail")]
 		public string Email { get; set; }
-		public string Salary { get; set; }
+		public double  Salary { get; set; }
 
 		[DisplayName("Data Of Birth")]
-		public string DataOfBirth { get; set; }
+		public DateTime DataOfBirth { get; set; }
 
 		[DisplayName("Name")]
 		public string FullName

@@ -12,7 +12,7 @@ namespace Model_View_Controller.Models
 		public string FirstName { get; set; }
 
 		[DisplayName("Last Name")]
-		public int LastName { get; set; }
+		public string LastName { get; set; }
 
 		[DisplayName("E-mail")]
 		public string Email { get; set; }
